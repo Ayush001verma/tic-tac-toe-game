@@ -22,7 +22,7 @@ function App() {
     curr_symbol = curr_symbol === "X" ? "O" : "X";
   }
 
-  function check_winner(curr_id) {
+  function check_winner(curr_id, symbol) {
     const x = parseInt(curr_id[0]);
     const y = parseInt(curr_id[1]);
 
@@ -38,7 +38,7 @@ function App() {
 
     if (win) {
       setTimeout(() => {
-        alert(`🎉 Player ${curr_symbol} wins!`);
+        alert(`🎉 Player ${symbol} wins!`);
         start_game();
       }, 100);
     } else if (counter === 9) {
@@ -61,7 +61,8 @@ function App() {
     if (el && el.innerText === "") {
       el.innerText = curr_symbol;
       counter++;
-      check_winner(id);
+      const played_symbol = curr_symbol;
+      check_winner(id, played_symbol);
       toggle_symbol();
     }
   }
